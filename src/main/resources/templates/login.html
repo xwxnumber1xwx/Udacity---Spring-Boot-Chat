@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="#" th:action="@{/login}" method="POST">
+
+            <label for="inputUsername">Username</label>
+            <input type="text" class="form-control" name="username" id="inputUsername" placeholder="Enter Username" maxlength="20" required>
+
+            <label for="inputPassword">Password</label>
+            <input type="password" class="form-control" name="password" id="inputPassword" placeholder="Enter Password" maxlength="20" required>
+
+
+        <button id="submit-button" type="submit" class="btn btn-primary">Login</button>
+        </form>
+            <a href="/signup">SignUp</a>
+</body>
+</html>

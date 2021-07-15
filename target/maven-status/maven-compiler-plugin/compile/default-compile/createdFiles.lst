@@ -1,5 +1,14 @@
+com\example\mvc_basics\controller\SignupController.class
+com\example\mvc_basics\controller\LoginController.class
+com\example\mvc_basics\model\User.class
+com\example\mvc_basics\mapper\MessageMapper.class
+com\example\mvc_basics\service\HashService.class
+com\example\mvc_basics\service\AuthenticationService.class
+com\example\mvc_basics\mapper\UserMapper.class
 com\example\mvc_basics\model\ChatMessage.class
 com\example\mvc_basics\controller\ChatController.class
 com\example\mvc_basics\MvcBasicsApplication.class
 com\example\mvc_basics\service\MessageService.class
+com\example\mvc_basics\config\SecurityConfig.class
 com\example\mvc_basics\model\ChatForm.class
+com\example\mvc_basics\service\UserService.class
