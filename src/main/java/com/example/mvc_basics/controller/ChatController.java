@@ -2,6 +2,7 @@ package com.example.mvc_basics.controller;
 
 import com.example.mvc_basics.model.ChatForm;
 import com.example.mvc_basics.service.MessageService;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,15 +21,17 @@ public class ChatController {
     }
 
     @GetMapping
-    public String getChatPage(ChatForm chatForm, Model model) {
+    public String getChatPage(Authentication authentication, ChatForm chatForm, Model model) {
+        chatForm.setUsername(authentication.getName());
         model.addAttribute("chatMessages", messageService.getChatMessages());
         return "chat";
     }
 
     @PostMapping
-    public String postChatMessage(ChatForm chatForm,  Model model) {
+    public String postChatMessage(Authentication authentication, ChatForm chatForm, Model model) {
+        chatForm.setUsername(authentication.getName());
         this.messageService.addChatMessages(chatForm);
-        chatForm.setMessage("");
+        chatForm.setMessageText("");
         model.addAttribute("chatMessages", messageService.getChatMessages());
         return "chat";
     }

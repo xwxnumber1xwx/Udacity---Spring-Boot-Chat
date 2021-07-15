@@ -1,5 +1,6 @@
 package com.example.mvc_basics.service;
 
+import com.example.mvc_basics.mapper.MessageMapper;
 import com.example.mvc_basics.model.ChatForm;
 import com.example.mvc_basics.model.ChatMessage;
 import org.springframework.stereotype.Service;
@@ -12,34 +13,38 @@ import java.util.List;
 @Service
 public class MessageService {
 
-    private List<ChatMessage> chatMessages;
+    private MessageMapper messageMapper;
+
+    public MessageService(MessageMapper messageMapper) {
+        this.messageMapper = messageMapper;
+    }
 
     @PostConstruct
     public void postConstruct() {
-        this.chatMessages = new ArrayList<>();
+
     }
 
     public List<ChatMessage> getChatMessages() {
-        return chatMessages;
+        return this.messageMapper.getAllMessages();
     }
 
     public void addChatMessages(ChatForm chatForm) {
         ChatMessage chatMessage = new ChatMessage();
         chatMessage.setUsername(chatForm.getUsername());
-        switch (chatForm.getMode()) {
+        switch (chatForm.getMessageType()) {
             case "Say":
-                chatMessage.setMessage(chatForm.getMessage());
+                chatMessage.setMessageText(chatForm.getMessageText());
                 break;
             case "Shout":
-                chatMessage.setMessage(chatForm.getMessage().toUpperCase());
+                chatMessage.setMessageText(chatForm.getMessageText().toUpperCase());
                 break;
             case "Whisper":
-                chatMessage.setMessage(chatForm.getMessage().toLowerCase());
+                chatMessage.setMessageText(chatForm.getMessageText().toLowerCase());
                 break;
             default:
-                chatMessage.setMessage(chatForm.getMessage());
+                chatMessage.setMessageText(chatForm.getMessageText());
         }
-        this.chatMessages.add(chatMessage);
+        this.messageMapper.addMessage(chatMessage);
     }
 
 
